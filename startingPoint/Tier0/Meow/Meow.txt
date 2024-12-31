@@ -1,0 +1,14 @@
+Target IP: 10.129.248.200
+
+Attacking IP: 10.10.14.92
+
+flag
+b40abdfe23665f766f9c61ecba8a4c19
+
+
+Steps:
+
+1. nmap -sV 10.129.248.200
+2. telnet 10.129.248.200
+3. Log in as root
+4. cat flag.txt 

