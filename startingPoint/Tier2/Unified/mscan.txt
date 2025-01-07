@@ -1,0 +1,3 @@
+Discovered open port 8843/tcp on 10.129.230.250                                
+Discovered open port 8080/tcp on 10.129.230.250                                
+Discovered open port 8443/tcp on 10.129.230.250                                
