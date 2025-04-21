@@ -30,9 +30,9 @@
             Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
             ```
 
-2. Visit 10.129.80.224, gets redirected to unika.htb
+2. Visit `10.129.80.224`, gets redirected to `unika.htb`
 
-3. Add 10.129.80.224 to /etc/hosts
+3. Add `10.129.80.224` to `/etc/hosts`
     - Command: `sudo vim /etc/hosts`
         - Output:
             ```
@@ -67,6 +67,6 @@
     - Command: `evil-winrm -i 10.129.80.224 -u Administrator -p badminton`
 
 9. Get Flag
-    - Command: `cd C:\Users\mike\Desktop
+    - Command: `cd C:\Users\mike\Desktop`
     - cat flag.txt
         - Flag: ea81b7afddd03efaa0945333ed147fac
