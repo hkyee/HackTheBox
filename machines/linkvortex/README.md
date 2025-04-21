@@ -58,7 +58,6 @@
         ```
         cd gitdump/
         git status
-
         ```
         - Output: 
           ```
