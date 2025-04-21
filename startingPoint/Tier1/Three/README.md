@@ -8,7 +8,7 @@
 
 ## 1. Introduction
 
-**Category:** AWS, S3, Gobuster, Virtual Hosts, Reverse Shell, NetCat
+**Category:** AWS, S3, Gobuster, Virtual Hosts, Reverse Shell, NetCat      
 **Difficulty Level:** Very Easy   
 **CVE(s) involved:** -
 
