@@ -52,7 +52,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
   - Found: /.git/
 
 - **Use Git Dumper**
-    - Command `python3 git_dumper.py http://dev.linkvortex.htb/.git/ ~/github/HTB/machines/linkvortex`
+    - Command `python3 git_dumper.py http://dev.linkvortex.htb/.git/ ~/github/HTB/machines/linkvortex/gitdump`
     - Check git status `git status`
     - Output: 
       ```
