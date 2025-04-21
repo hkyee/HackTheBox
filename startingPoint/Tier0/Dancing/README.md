@@ -17,7 +17,7 @@
 ## 2. Steps
 
 1. Service Enumeration
-    Command: `nmap -sV 10.129.45.129`
+    - Command: `nmap -sV 10.129.45.129`
         - Output:
             ```
             PORT     STATE SERVICE       VERSION
