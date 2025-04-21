@@ -8,7 +8,7 @@
 
 ## 1. Introduction
 
-**Category:** SQL Injection
+**Category:** SQL Injection     
 **Difficulty Level:** Very Easy   
 **CVE(s) involved:** -
 
