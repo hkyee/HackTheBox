@@ -11,7 +11,7 @@
 
 ## 1. Introduction
  
-**Category:** [git dumping, Ghost, race condition, ssh]  
+**Category:** git dumping, Ghost, race condition, ssh
 **Difficulty Level:** Easy   
 **CVE(s) involved:** CVE-2023-40028
 

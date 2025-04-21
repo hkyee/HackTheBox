@@ -8,7 +8,7 @@
 
 ## 1. Introduction
 
-**Category:** [Server Message Block (SMB)]  
+**Category:** Server Message Block (SMB)
 **Difficulty Level:** Very Easy   
 **CVE(s) involved:** -
 

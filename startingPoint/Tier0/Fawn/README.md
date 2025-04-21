@@ -8,7 +8,7 @@
 
 ## 1. Introduction
 
-**Category:** [File Trainsfer Protocol (FTP)]  
+**Category:** File Trainsfer Protocol (FTP)
 **Difficulty Level:** Very Easy   
 **CVE(s) involved:** -
 
