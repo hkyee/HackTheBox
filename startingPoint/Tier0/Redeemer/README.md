@@ -8,7 +8,7 @@
 
 ## 1. Introduction
 
-**Category:** Redis
+**Category:** Redis        
 **Difficulty Level:** Very Easy   
 **CVE(s) involved:** -
 
