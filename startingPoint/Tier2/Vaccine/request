@@ -1,11 +1,12 @@
 GET /dashboard.php?search=test HTTP/1.1
-Host: vaccine.htb
+Host: 10.129.95.174
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate, br
 Connection: keep-alive
-Referer: http://vaccine.htb/dashboard.php?search=test
-Cookie: PHPSESSID=9u6t0laadrqsm4g9vee8470s82
+Referer: http://10.129.95.174/dashboard.php
+Cookie: PHPSESSID=qj17lk4skn0bnc76gshv2qsekc
 Upgrade-Insecure-Requests: 1
 Priority: u=0, i
+

